@@ -15,22 +15,22 @@ function _user_host() {
 ZSH_THEME_GIT_TIME_SINCE_COMMIT_SHORT="%{$fg[green]%}"
 ZSH_THEME_GIT_TIME_SHORT_COMMIT_MEDIUM="%{$fg[yellow]%}"
 ZSH_THEME_GIT_TIME_SINCE_COMMIT_LONG="%{$fg[red]%}"
-ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{%}"
+ZSH_THEME_GIT_TIME_SINCE_COMMIT_NEUTRAL="%{${reset_color}%}"
 
 # Determine the time since last commit. If branch is clean,
 # use a neutral color, otherwise colors will vary according to time.
 function _git_time_since_commit() {
     if git rev-parse --git-dir > /dev/null 2>&1; then
+        # Get the last commit.
+        last_commit=$(git log --pretty=format:'%at' -1 2> /dev/null)
         # Only proceed if there is actually a commit.
-        if [[ $(git log 2>&1 > /dev/null | grep -c "^fatal: bad default revision") == 0 ]]; then
-            # Get the last commit.
-            last_commit=$(git log --pretty=format:'%at' -1 2> /dev/null)
+        if [[ $? == 0 && -n $last_commit ]]; then
             now=$(date +%s)
-            seconds_since_last_commit=$((now-last_commit))
+            seconds_since_last_commit=$((now - last_commit))
 
             # Totals
             minutes=$((seconds_since_last_commit / 60))
-            hours=$((seconds_since_last_commit/3600))
+            hours=$((seconds_since_last_commit / 3600))
 
             # Sub-hours and sub-minutes
             days=$((seconds_since_last_commit / 86400))
