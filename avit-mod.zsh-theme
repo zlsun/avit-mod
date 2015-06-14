@@ -1,7 +1,5 @@
 # AVIT ZSH Theme
 
-local current_dir="%{$fg[blue]%}%3~%{$reset_color%} "
-
 function _user_host() {
     if [[ -n $SSH_CONNECTION ]]; then
         me="%n@%m"
@@ -9,24 +7,9 @@ function _user_host() {
         me="%n"
     fi
     if [[ -n $me ]]; then
-        echo "%{$fg[cyan]%}$me%{$reset_color%}:"
+        echo "%{$fg[cyan]%}$me%{$reset_color%} "
     fi
 }
-local user_host='$(_user_host)'
-
-function _vi_status() {
-    if {echo $fpath | grep -q "plugins/vi-mode"}; then
-        echo "$(vi_mode_prompt_info)"
-    fi
-}
-local vi_status='$(_vi_status)'
-
-function _ruby_version() {
-    if {echo $fpath | grep -q "plugins/rvm"}; then
-        echo "%{$fg[grey]%}$(rvm_prompt_info)%{$reset_color%}"
-    fi
-}
-local ruby_version='$(_ruby_version)'
 
 # Colors vary depending on time lapsed.
 ZSH_THEME_GIT_TIME_SINCE_COMMIT_SHORT="%{$fg[green]%}"
@@ -78,21 +61,6 @@ function _git_time_since_commit() {
         fi
     fi
 }
-local git_time='$(_git_time_since_commit)'
-
-local git_info='$(git_prompt_info)%{$reset_color%}'
-local git_status='$(git_prompt_status)'
-
-local up='$(echotc UP 1)'
-local down='$(echotc DO 1)'
-
-local return_status="%{$fg[red]%}%(?..⍉%?)%{$reset_color%}"
-local hist_no="%{$fg[grey]%}%h%{$reset_color%}"
-
-PROMPT="╭─${user_host}${current_dir} ${git_info} ${ruby_version}
-╰─▶ "
-PROMPT2="%{$fg[grey]%}◀%{$reset_color%} "
-RPROMPT="%{${up}%}${vi_status} ${git_time} ${git_status} ${return_status}%{${down}%}"
 
 if [[ $USER == "root" ]]; then
     CARETCOLOR="red"
@@ -103,7 +71,7 @@ fi
 MODE_INDICATOR="%{$fg_bold[yellow]%}❮%{$reset_color%}%{$fg[yellow]%}❮❮%{$reset_color%}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[green]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX=" %{$reset_color%}"
 
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}✗%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}✔%{$reset_color%}"
@@ -112,5 +80,31 @@ ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%}⚑ "
 ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%}✖ "
 ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[blue]%}▴ "
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[cyan]%}§ "
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{%}◒ "
+ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[magenta]%}◒ "
+
+ZSH_THEME_VIRTUALENV_PREFIX="%{$fg[yellow]%}‹"
+ZSH_THEME_VIRTUALENV_SUFFIX="› %{$reset_color%}"
+
+ZSH_THEME_RVM_PROMPT_PREFIX="%{$fg[yellow]%}‹"
+ZSH_THEME_RVM_PROMPT_SUFFIX="› %{$reset_color%}"
+
+local _user='$(_user_host)'
+local _wd="%{$fg[blue]%}%4~%{$reset_color%} "
+local _ruby='$(ruby_prompt_info)'
+local _venv='$(virtualenv_prompt_info)'
+local _git='$(git_prompt_info)%{$reset_color%}'
+
+local _up='%{$(echotc UP 1)%}'
+local _do='%{$(echotc DO 1)%}'
+
+local _vi='$(vi_mode_prompt_info)'
+local _gtime='$(_git_time_since_commit)'
+local _gstatus='$(git_prompt_status)'
+
+local _return="%{$fg[red]%}%(?.. ⍉%?)%{$reset_color%}"
+
+PROMPT="╭─${_user}${_wd}${_venv}${_ruby}${_git}
+╰─▶ "
+PROMPT2="  ▶ "
+RPROMPT="${_up}${_vi} ${_gtime} ${_gstatus}${_return}${_do}"
 
