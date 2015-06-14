@@ -101,10 +101,11 @@ local _vi='$(vi_mode_prompt_info)'
 local _gtime='$(_git_time_since_commit)'
 local _gstatus='$(git_prompt_status)'
 
+local _jobs="%{$fg[cyan]%}%(1j. ⚙ %j.)%{$reset_color%}"
 local _return="%{$fg[red]%}%(?.. ⍉%?)%{$reset_color%}"
 
 PROMPT="╭─${_user}${_wd}${_venv}${_ruby}${_git}
 ╰─▶ "
 PROMPT2="  ▶ "
-RPROMPT="${_up}${_vi} ${_gtime} ${_gstatus}${_return}${_do}"
+RPROMPT="${_up}${_vi} ${_gtime} ${_gstatus}${_jobs}${_return}${_do}"
 
