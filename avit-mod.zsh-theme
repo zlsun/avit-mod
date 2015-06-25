@@ -71,10 +71,10 @@ fi
 MODE_INDICATOR="%{$fg_bold[yellow]%}❮%{$reset_color%}%{$fg[yellow]%}❮❮%{$reset_color%}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[green]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX=" %{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}✗%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}✔%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}✔ %{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%}✚ "
 ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%}⚑ "
 ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%}✖ "
@@ -88,24 +88,25 @@ ZSH_THEME_VIRTUALENV_SUFFIX="› %{$reset_color%}"
 ZSH_THEME_RVM_PROMPT_PREFIX="%{$fg[yellow]%}‹"
 ZSH_THEME_RVM_PROMPT_SUFFIX="› %{$reset_color%}"
 
+local _up='%{$(echotc UP 1)%}'
+local _do='%{$(echotc DO 1)%}'
+
 local _user='$(_user_host)'
 local _wd="%{$fg[blue]%}%4~%{$reset_color%} "
 local _ruby='$(ruby_prompt_info)'
 local _venv='$(virtualenv_prompt_info)'
-local _git='$(git_prompt_info)%{$reset_color%}'
+local _git='$(git_prompt_info)'
 
-local _up='%{$(echotc UP 1)%}'
-local _do='%{$(echotc DO 1)%}'
+local _gstatus='$(git_prompt_status) '
+local _gtime='$(_git_time_since_commit)'
 
 local _vi='$(vi_mode_prompt_info)'
-local _gtime='$(_git_time_since_commit)'
-local _gstatus='$(git_prompt_status)'
 
 local _jobs="%{$fg[cyan]%}%(1j. ⚙ %j.)%{$reset_color%}"
-local _return="%{$fg[red]%}%(?.. ⍉%?)%{$reset_color%}"
+local _return="%{$fg[red]%}%(?..↵ %?)%{$reset_color%}"
 
-PROMPT="╭─${_user}${_wd}${_venv}${_ruby}${_git}
+PROMPT="╭─${_user}${_wd}${_venv}${_ruby}${_git}${_gstatus}${_gtime}${_vi}
 ╰─▶ "
 PROMPT2="  ▶ "
-RPROMPT="${_up}${_vi} ${_gtime} ${_gstatus}${_jobs}${_return}${_do}"
+RPROMPT="${_return}${_jobs}"
 
