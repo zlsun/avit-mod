@@ -1,4 +1,4 @@
-# AVIT ZSH Theme
+# avit-mod ZSH Theme
 
 function _user_host() {
     if [[ -n $SSH_CONNECTION ]]; then
@@ -92,7 +92,7 @@ local _up='%{$(echotc UP 1)%}'
 local _do='%{$(echotc DO 1)%}'
 
 local _user='$(_user_host)'
-local _wd="%{$fg[blue]%}%4~%{$reset_color%} "
+local _wd="%{$fg[blue]%}%5~%{$reset_color%} "
 local _ruby='$(ruby_prompt_info)'
 local _venv='$(virtualenv_prompt_info)'
 local _git='$(git_prompt_info)'
