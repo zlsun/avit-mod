@@ -76,11 +76,15 @@ ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[red]%}%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%}✔ %{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[green]%}✚ "
-ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%}⚑ "
+ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%}✹ "
 ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%}✖ "
-ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[blue]%}▴ "
+ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[blue]%}➜ "
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[cyan]%}§ "
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[magenta]%}◒ "
+
+ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg[cyan]%}▴ "
+ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg[magenta]%}▾ "
+ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$fg[]%}↕ "
 
 ZSH_THEME_VIRTUALENV_PREFIX="%{$fg[yellow]%}‹"
 ZSH_THEME_VIRTUALENV_SUFFIX="› %{$reset_color%}"
@@ -98,6 +102,7 @@ local _venv='$(virtualenv_prompt_info)'
 local _git='$(git_prompt_info)'
 
 local _gstatus='$(git_prompt_status) '
+local _gremote='$(git_remote_status)'
 local _gtime='$(_git_time_since_commit)'
 
 local _vi='$(vi_mode_prompt_info)'
@@ -105,7 +110,7 @@ local _vi='$(vi_mode_prompt_info)'
 local _jobs="%{$fg[cyan]%}%(1j. ⚙ %j.)%{$reset_color%}"
 local _return="%{$fg[red]%}%(?..↵ %?)%{$reset_color%}"
 
-PROMPT="╭─${_user}${_wd}${_venv}${_ruby}${_git}${_gstatus}${_gtime}${_vi}
+PROMPT="╭─${_user}${_wd}${_venv}${_ruby}${_git}${_gstatus}${_gremote}${_gtime}${_vi}
 ╰─▶ "
 PROMPT2="  ▶ "
 RPROMPT="${_return}${_jobs}"
