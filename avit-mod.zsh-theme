@@ -57,7 +57,7 @@ function _git_time_since_commit() {
                 commit_age="${minutes}m"
             fi
 
-            echo "$color$commit_age%{$reset_color%}"
+            echo " $color$commit_age%{$reset_color%}"
         fi
     fi
 }
@@ -82,9 +82,9 @@ ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[blue]%}➜ "
 ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[cyan]%}§ "
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[magenta]%}◒ "
 
-ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg[cyan]%}▴ "
-ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg[magenta]%}▾ "
-ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$fg[]%}↕ "
+ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE="%{$fg[cyan]%} ▴"
+ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE="%{$fg[magenta]%} ▾"
+ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE="%{$fg[red]%} ↕"
 
 ZSH_THEME_VIRTUALENV_PREFIX="%{$fg[yellow]%}‹"
 ZSH_THEME_VIRTUALENV_SUFFIX="› %{$reset_color%}"
@@ -92,17 +92,14 @@ ZSH_THEME_VIRTUALENV_SUFFIX="› %{$reset_color%}"
 ZSH_THEME_RVM_PROMPT_PREFIX="%{$fg[yellow]%}‹"
 ZSH_THEME_RVM_PROMPT_SUFFIX="› %{$reset_color%}"
 
-local _up='%{$(echotc UP 1)%}'
-local _do='%{$(echotc DO 1)%}'
-
 local _user='$(_user_host)'
 local _wd="%{$fg[blue]%}%5~%{$reset_color%} "
 local _ruby='$(ruby_prompt_info)'
 local _venv='$(virtualenv_prompt_info)'
 local _git='$(git_prompt_info)'
 
-local _gstatus='$(git_prompt_status) '
-local _gremote='$(git_remote_status)'
+local _gstatus='$(git_prompt_status)'
+local _gremote='$(git_remote_status)$(git_commits_ahead)'
 local _gtime='$(_git_time_since_commit)'
 
 local _vi='$(vi_mode_prompt_info)'
