@@ -107,7 +107,7 @@ local _vi='$(vi_mode_prompt_info)'
 local _jobs="%{$fg[cyan]%}%(1j. ⚙ %j.)%{$reset_color%}"
 local _return="%{$fg[red]%}%(?..↵ %?)%{$reset_color%}"
 
-PROMPT="╭─${_user}${_wd}${_venv}${_ruby}${_git}${_gstatus}${_gremote}${_gtime}${_vi}
+PROMPT="╭─${_user}${_wd}${_venv}${_ruby}${_git}${_gstatus}${_gremote}${_gtime}${_vi}%{$reset_color%}
 ╰─▶ "
 PROMPT2="  ▶ "
 RPROMPT="${_return}${_jobs}"
