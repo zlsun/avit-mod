@@ -93,7 +93,7 @@ ZSH_THEME_RVM_PROMPT_PREFIX="%{$fg[yellow]%}‹"
 ZSH_THEME_RVM_PROMPT_SUFFIX="› %{$reset_color%}"
 
 local _user='$(_user_host)'
-local _wd="%{$fg[blue]%}%5~%{$reset_color%} "
+local _wd="%{$fg[blue]%}%8~%{$reset_color%} "
 local _ruby='$(ruby_prompt_info)'
 local _venv='$(virtualenv_prompt_info)'
 local _git='$(git_prompt_info)'
