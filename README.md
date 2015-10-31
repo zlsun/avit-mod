@@ -12,3 +12,7 @@ Background jobs & Exit code
 
 ![](http://i.imgur.com/h7kpuny.png)
 
+Virtualenv
+
+![](http://i.imgur.com/AlBHUV0.png)
+
