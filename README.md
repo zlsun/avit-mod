@@ -50,3 +50,7 @@ Virtualenv
 
 ![](http://i.imgur.com/AlBHUV0.png)
 
+## License
+
+[MIT License](LICENSE)
+
