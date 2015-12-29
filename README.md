@@ -2,6 +2,20 @@
 
 A modified version of oh-my-zsh's theme [avit](https://github.com/robbyrussell/oh-my-zsh/blob/master/themes/avit.zsh-theme).
 
+## Screenshots
+
+Git branch & status & last committed time
+
+![](http://i.imgur.com/ZEw1SiH.png)
+
+Background jobs & Exit code
+
+![](http://i.imgur.com/h7kpuny.png)
+
+Virtualenv
+
+![](http://i.imgur.com/AlBHUV0.png)
+
 ## Installation
 
 ### For [oh-my-zsh](http://ohmyz.sh/) users
@@ -35,20 +49,6 @@ Add the following line to your **~/.zshrc**.
 ```shell
 zgen load zlsun/avit-mod avit-mod
 ```
-
-## Screenshots
-
-Git branch & status & last committed time
-
-![](http://i.imgur.com/ZEw1SiH.png)
-
-Background jobs & Exit code
-
-![](http://i.imgur.com/h7kpuny.png)
-
-Virtualenv
-
-![](http://i.imgur.com/AlBHUV0.png)
 
 ## License
 
