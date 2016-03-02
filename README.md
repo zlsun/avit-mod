@@ -6,15 +6,16 @@ A modified version of oh-my-zsh's theme [avit](https://github.com/robbyrussell/o
 
 Git branch & status & last committed time
 
-![](http://i.imgur.com/ZEw1SiH.png)
-
-Background jobs & Exit code
-
-![](http://i.imgur.com/h7kpuny.png)
+![](https://raw.githubusercontent.com/zlsun/screenshots/master/avit-mod/1.png)
 
 Virtualenv
 
-![](http://i.imgur.com/AlBHUV0.png)
+![](https://raw.githubusercontent.com/zlsun/screenshots/master/avit-mod/2.png)
+
+Background jobs & Exit code
+
+![](https://raw.githubusercontent.com/zlsun/screenshots/master/avit-mod/3.png)
+
 
 ## Installation
 
