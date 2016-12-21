@@ -62,6 +62,17 @@ function _git_time_since_commit() {
     fi
 }
 
+function _git_commits_ahead() {
+  if command git rev-parse --git-dir &>/dev/null; then
+    if command git rev-list --count @{upstream}..HEAD &>/dev/null; then
+        local commits="$(git rev-list --count @{upstream}..HEAD)"
+        if [[ "$commits" != 0 ]]; then
+          echo "$ZSH_THEME_GIT_COMMITS_AHEAD_PREFIX$commits$ZSH_THEME_GIT_COMMITS_AHEAD_SUFFIX"
+        fi
+      fi
+  fi
+}
+
 if [[ $USER == "root" ]]; then
     CARETCOLOR="red"
 else
@@ -99,7 +110,7 @@ local _venv='$(virtualenv_prompt_info)'
 local _git='$(git_prompt_info)'
 
 local _gstatus='$(git_prompt_status)'
-local _gremote='$(git_remote_status)$(git_commits_ahead)'
+local _gremote='$(git_remote_status)$(_git_commits_ahead)'
 local _gtime='$(_git_time_since_commit)'
 
 local _vi='$(vi_mode_prompt_info)'
